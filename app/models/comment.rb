@@ -10,6 +10,8 @@ class Comment < ApplicationRecord
   after_create :update_post_comments_counter
   after_destroy :update_post_comments_counter
 
+  validates :text, presence: true, length: { maximum: 250 }
+
   # methods
   private
 
