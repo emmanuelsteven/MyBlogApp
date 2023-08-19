@@ -30,7 +30,7 @@ RSpec.describe Post, type: :model do
     subject.likes_counter = -1
     expect(subject).to_not be_valid
   end
-  
+
   it 'should have an author' do
     subject.author = nil
     expect(subject).to_not be_valid
