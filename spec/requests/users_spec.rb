@@ -8,14 +8,14 @@ RSpec.describe 'Users', type: :request do
     end
     it 'includes the correct placeholder text in the response body' do
       get '/users'
-      expect(response.body).to include('All User')
+      expect(response.body).to include('my blog placeholder')
     end
   end
   describe 'GET /users/:id' do
     # Create a user for testing
     let(:user) do
       User.create(name: 'Steven', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from jos.',
-                  posts_count: 0)
+                  post_counter: 0)
     end
     it 'returns a successful response' do
       get "/users/#{user.id}"
@@ -24,7 +24,7 @@ RSpec.describe 'Users', type: :request do
 
     it 'includes the correct placeholder text in the response body' do
       get "/users/#{user.id}"
-      expect(response.body).to include('User Profile')
+      expect(response.body).to include('Details for a selected user with post')
     end
 
     it 'renders the show template' do
