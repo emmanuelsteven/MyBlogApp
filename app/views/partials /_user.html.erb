@@ -1,7 +1,3 @@
-<h1>Blog App</h1>
-<ul>
-<% @users.each do |user|%>
-<li>
 <div class='user-content'>
 <%= image_tag user.photo, alt: "#{user.name} profile image", class: 'profile'%>
  <div class='user-content2'>
@@ -12,6 +8,3 @@
    <%end%>
  </div>
 </div>
-</li>
-<% end %>
-</ul>
