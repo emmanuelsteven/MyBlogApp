@@ -4,11 +4,11 @@
     <h1><%=@post.title%> by <%=@post.author.name%></h1>
     <div class='post-count-best'>Comments: <%=@post.comment_counter%>, Likes: <%=@post.likes_counter%></div>
   </div>
-  <div><%=@post.text%></div>
+  <div class = 'post-kont'><%=@post.text%></div>
   <ul class='comment-content'>
-    <% @post.comments.each do |comment| %>
-      <li><%= comment.author.name %>: <%= comment.text %></li>
-    <% end %>
-    <%= 'No comments' if @post.comments.empty? %>
-  </ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.author.name %>: <%= comment.text %></li>
+  <% end %>
+  <%= 'No comments' if @post.comments.empty? %>
+</ul>
 </article>

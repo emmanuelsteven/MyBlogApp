@@ -109,3 +109,22 @@ h2 {
   padding: 10px;
   list-style: none;
 }
+
+.no-posts {
+  width: 80%;
+  margin: auto;
+}
+
+.post-title {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.post-kont {
+  border: 2px solid #000;
+  padding: 20px;
+  margin-bottom: 15px;
+}

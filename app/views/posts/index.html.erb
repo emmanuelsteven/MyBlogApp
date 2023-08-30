@@ -20,13 +20,14 @@
             <div><%= post.text[0, 100] %><%='...' if post.text[51] %></div>
             <p class='post-total'>Comments: <%= post.comment_counter %>, Likes: <%= post.likes_counter %></p>
           </div>
-        <% end %>
-        <ul class='comment-content'>
-          <% post.comments.each do |comment| %>
+          <ul class='comment-content'>
+          <% post.five_recent_comments.each do |comment| %>
             <li><%= comment.author.name %>: <%= comment.text %></li>
           <% end %>
           <%= 'No comments' if post.comments.empty? %>
         </ul>
+        <% end %>
+     
       </li>
     <% end %>
   <% end %>
