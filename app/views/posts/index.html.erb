@@ -1,14 +1,32 @@
 <h1>Blog App</h1>
-
-<%= render 'partials/user', user: @user %>
+<div class='user-content'>
+  <%= image_tag @user.photo, alt: "#{@user.name} profile image", class: 'profile'%>
+ <div class='user-content2'>
+   <%= link_to @user,class:'user-content-details' do %>
+   <h2><%= @user.name %></h2>
+   <p class='user-post-total'>Number of posts: <%=@user.post_counter%> </p>
+   <%end%>
+ </div>
+</div>
 <ul>
 <% if @posts.empty? %>
   <p class='no-posts'>No posts</p>
 <% else %>
 <% @posts.each do |post|%>
 <li>
-  <%= render 'partials/post', post: post %>
-  <%= render 'partials/comment', comments: post.five_recent_comments%>
+<%=link_to user_post_path(post.author, post), class:'post-content' do%>
+  <div class='post_subcont'>
+  <h3><%=post.title%></h3>
+  <div><%=post.text[0, 100]%><%='...' if post.text[51]%></div>
+  <p class='post-total'>Comments: <%=post.comment_counter%>, Likes: <%=post.likes_counter%></p>
+  </div>
+  <%end%>
+  <ul class='comment-content'>
+  <% comments.each do |comment|%>
+  <li><%= comment.author.name%>: <%=comment.text%></li>
+  <%end%>
+  <%= 'No comments' if comments.empty?%>
+  </ul>
 </li>
 <%end%>
 <%end%>

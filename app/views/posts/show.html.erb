@@ -1,10 +1,14 @@
 <h1>Blog App</h1>
-
 <article class='no-posts'>
-  <div class='post-title' >
-  <h1><%=@post.title%> by <%=@post.author.name%><h1>
-  <div class='post-count-best'>Comments: <%=@post.comment_counter%>, Likes:<%=@post.likes_counter%></div>
+  <div class='post-title'>
+    <h1><%=@post.title%> by <%=@post.author.name%></h1>
+    <div class='post-count-best'>Comments: <%=@post.comment_counter%>, Likes: <%=@post.likes_counter%></div>
   </div>
   <div><%=@post.text%></div>
-  <%= render 'partials/comment', comments: @post.five_recent_comments %>
+  <ul class='comment-content'>
+    <% @post.comments.each do |comment| %>
+      <li><%= comment.author.name %>: <%= comment.text %></li>
+    <% end %>
+    <%= 'No comments' if @post.comments.empty? %>
+  </ul>
 </article>

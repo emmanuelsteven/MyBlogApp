@@ -1,19 +1,17 @@
 class UsersController < ApplicationController
-  # before_action :find_user, only: [:show]
-
   def index
-    @users = User.all # Assuming you have a User model
-    # Additional logic if needed
+    @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-    # @posts = @user.return_three_most_recent_posts
+    @posts = @user.three_recent_posts
   end
 
   def new
     @user = User.new
   end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -22,9 +20,11 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   def edit
     @user = User.find(params[:id])
   end
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -33,16 +33,16 @@ class UsersController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path
   end
+
   private
 
   def user_params
     params.require(:user).permit(:name, :bio, :photo)
   end
 end
-
-
