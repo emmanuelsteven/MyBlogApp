@@ -1,1 +1,31 @@
-<h1>Details for a selected user with post<h1>
+<h1>Blog App</h1>
+
+<div class='user-content'>
+  <%= image_tag 'photo-book.jpg', alt: "#{@user.name} profile image", class: 'profile'%>
+ <div class='user-content2'>
+   <%= link_to @user,class:'user-content-details' do %>
+   <h2><%= @user.name %></h2>
+   <p class='user-post-total'>Number of posts: <%=@user.post_counter%> </p>
+   <%end%>
+ </div>
+</div>
+<div class='bio'><%=@user.bio%></div>
+<ul class='user-post-list'>
+<%if @user.three_recent_posts.empty?%>
+<p class='no-posts'>No posts</p>
+<%else%>
+<%@user.three_recent_posts.each do |post| %>
+<li>
+<%=link_to user_post_path(post.author, post), class:'post-content' do%>
+    <div class='post_subcont'>
+    <h3><%=post.title%></h3>
+    <div><%=post.text[0, 100]%><%='...' if post.text[51]%></div>
+    <p class='post-total'>Comments: <%=post.comment_counter%>, Likes: <%=post.likes_counter%></p>
+    </div>
+    <%end%>
+</li>
+<%end%>
+<%end%>
+</ul>
+<div class='content-view-all-post-btn'>
+<%= link_to "View all posts", user_posts_path(@user), class: 'view-all-post-btn' %></div>

@@ -1,1 +1,16 @@
-<h1>Details of a selected post<h1>
+<h1>Blog App</h1>
+<article class='no-posts'>
+
+  <div class = 'post-kont'>
+  <div class='post-title'>
+    <h3><%=@post.title%> by <%=@post.author.name%></h3>
+    <div class='post-count-best'>Comments: <%=@post.comment_counter%>, Likes: <%=@post.likes_counter%></div>
+  </div>
+  <%=@post.text%></div>
+  <ul class='comment-content'>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.author.name %>: <%= comment.text %></li>
+  <% end %>
+  <%= 'No comments' if @post.comments.empty? %>
+</ul>
+</article>

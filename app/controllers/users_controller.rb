@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all # Assuming you have a User model
-    # Additional logic if needed
+    @users = User.all
   end
 
   def show
-    @user_id = params[:id]
-    # Placeholder action for the 'users/:id' URL
+    @user = User.find(params[:id])
+    @posts = @user.three_recent_posts
   end
 end
