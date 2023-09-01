@@ -1,19 +1,27 @@
 class CommentsController < ApplicationController
-  def create
-    @comment = Comment.new(comment_params)
-    @comment.save
-    redirect_to comments_path
+  def new
+    @user = current_user
+    @post = Post.find(params [:post_id])
+    @comment = Comment.new
   end
 
-  def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to comments_path
-  end
+  def create
+    @user = current+_user
+    @post = Post.find(params [:post_id])
+    @comment = @post.comments.new(comment_params)
+    @com ment.author = @user
+      if @comment.save
+        flash [:success] = 'comment created successfully'
+    redirect_to  user_post_path (@user, @post)
+      else 
+        flash.now[:error] = 'Error: comment not saved'
+        render :new
+      end 
+    end 
 
   private
 
   def comment_params
-    params.require(:comment).permit(:author_id, :post_id)
+    params.require(:comment).permit(:text)
   end
 end
