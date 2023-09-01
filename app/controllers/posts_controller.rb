@@ -14,11 +14,12 @@ class PostsController < ApplicationController
 
   def create
     @user = current_user
-    @post = @user.post.new(post_params)
+    @post = @user.posts.new(post_params)
     if @post.save
-      redirect_to user_post_path(@user, @post)
+      flash[:notice] = 'post successful'
+      redirect_to user_posts_path(@user)
     else 
-      flash.now[:error]  = 'invalid post'
+      flash.now[:alert]  = 'invalid post'
       render :new
     end
   end
@@ -26,6 +27,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    paramst.require(:post).permit(:title, :text)
+    params.require(:post).permit(:title, :text)
   end
 end

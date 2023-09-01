@@ -7,28 +7,43 @@
       <p class='user-post-total'>Number of posts: <%=@user.post_counter%> </p>
     <% end %>
   </div>
+  
 </div>
+<div class:addlink>
+<%= link_to "Add Post", new_user_post_path(@user), class: 'add_post' %>
+</div>
+<main class="post-index">
+  <% @posts.reverse_each do |post| %>
+    <div 
+    
 <ul>
   <% if @posts.empty? %>
     <p class='no-posts'>No posts</p>
   <% else %>
     <% @posts.each do |post| %>
-      <li>
+   
         <%= link_to user_post_path(post.author, post), class: 'post-content' do %>
           <div class='post_subcont'>
             <h3><%= post.title %></h3>
             <div><%= post.text[0, 100] %><%='...' if post.text[51] %></div>
             <p class='post-total'>Comments: <%= post.comment_counter %>, Likes: <%= post.likes_counter %></p>
           </div>
-          <ul class='comment-content'>
-          <% post.five_recent_comments.each do |comment| %>
-            <li><%= comment.author.name %>: <%= comment.text %></li>
+          <% end %>
+          <div>
+          <%= link_to "Add Comment", new_user_post_comment_path(@user, post), class: 'add_comment' %>
+          <%= form_with url: user_post_likes_path(post.author.id, post.id) do |form| %>
+            <%= form.submit 'Like', class: 'like_btn' %>
+          <% end %>
+        </div>
+       
+        
+          <div class='comment-container'>
+          <% post.five_recent_comments.reverse_each do |comment| %>
           <% end %>
           <%= 'No comments' if post.comments.empty? %>
-        </ul>
         <% end %>
-     
-      </li>
+   
     <% end %>
   <% end %>
 </ul>
+</main>

@@ -126,3 +126,31 @@ h2 {
   padding: 20px;
   margin-bottom: 15px;
 }
+
+.view-all-post-btn,
+.add_comment,
+.like_btn,
+.comment_btn,
+.post_btn {
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+
+.post_btn {
+  border: none;
+  outline: none;
+}
+
+.like_btn,
+.comment_btn {
+  margin-top: 8px;
+  padding: 8px;
+  border: none;
+  outline: none;
+}
+ .add_post{
+  color: blue;
+ }
