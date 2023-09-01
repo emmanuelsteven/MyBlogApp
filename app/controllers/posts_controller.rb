@@ -7,8 +7,9 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
+
   def new
-    @user =current_user
+    @user = current_user
     @post = Post.new
   end
 
@@ -18,8 +19,8 @@ class PostsController < ApplicationController
     if @post.save
       flash[:notice] = 'post successful'
       redirect_to user_posts_path(@user)
-    else 
-      flash.now[:alert]  = 'invalid post'
+    else
+      flash.now[:alert] = 'invalid post'
       render :new
     end
   end

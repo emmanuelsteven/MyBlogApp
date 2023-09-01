@@ -8,5 +8,3 @@ class LikesController < ApplicationController
     redirect_to user_post_path(@user.id, @post)
   end
 end
-
-  
