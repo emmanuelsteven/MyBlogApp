@@ -8,11 +8,21 @@
 
     <%= stylesheet_link_tag 'style', media: 'all', "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag 'navbar.css' %>
+    <%= stylesheet_link_tag 'deviseViews.css' %>
+
   </head>
 
   <body>
+  <header>
+  <%= render partial: "shared/navbar" %>
+</header>
+<main>
+<div class:flashy>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
     <%= yield %>
+    </div>
+    </main>
   </body>
 </html>
